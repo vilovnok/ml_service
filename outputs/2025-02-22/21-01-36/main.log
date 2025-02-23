@@ -1,0 +1,56 @@
+[2025-02-22 21:01:36,975][aiogram.dispatcher][INFO] - Start polling
+[2025-02-22 21:01:37,195][aiogram.dispatcher][INFO] - Run polling for bot @YanixTradebot id=7420915283 - 'YanixTradeBot'
+[2025-02-22 21:01:42,970][aiogram.event][INFO] - Update id=667609203 is not handled. Duration 1 ms by bot id=7420915283
+[2025-02-22 21:01:42,971][aiogram.event][ERROR] - Cause exception while process update id=667609203 by bot id=7420915283
+ValueError: the greenlet library is required to use this function. No module named 'greenlet'
+Traceback (most recent call last):
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/ynx_bot/routers/welcome_router.py", line 40, in cmd_start
+    result = await connect2db(uow=UOWDep, user_id=user_id)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/ynx_bot/routers/welcome_router.py", line 15, in connect2db
+    async with UnitOfWork() as uow:
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/ynx_bot/utils/unitofwork.py", line 41, in __aexit__
+    await self.rollback()
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/ynx_bot/utils/unitofwork.py", line 48, in rollback
+    await self.session.rollback()
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1001, in rollback
+    await greenlet_spawn(self.sync_session.rollback)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/sqlalchemy/util/concurrency.py", line 99, in greenlet_spawn
+    _not_implemented()
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/sqlalchemy/util/concurrency.py", line 79, in _not_implemented
+    raise ValueError(
+ValueError: the greenlet library is required to use this function. No module named 'greenlet'
+[2025-02-22 21:01:48,275][aiogram.dispatcher][WARNING] - Received SIGINT signal
+[2025-02-22 21:01:48,279][aiogram.dispatcher][INFO] - Polling stopped for bot @YanixTradebot id=7420915283 - 'YanixTradeBot'
+[2025-02-22 21:01:48,280][aiogram.dispatcher][INFO] - Polling stopped

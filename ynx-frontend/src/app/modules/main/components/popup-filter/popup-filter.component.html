@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="block">
+        <div>
+            <h2>Filter files</h2>
+        </div>
+        
+        <div class="section_1">
+            <div class="content">
+                <div>
+                    <label for="filename">filename</label>
+                    <input type="text" name="filename" [(ngModel)]="filename">
+                </div>
+            </div>
+            <div class="footer">
+                <button (click)="fetchSpecificFile()">send</button>
+            </div>
+        </div>
+        
+        <div class="section_2">
+            <div class="content">
+                <div>
+                    <label for="start_date">start_date</label>
+                    <input type="date" [max]="maxDate" name="start_date" [(ngModel)]="start_date">
+                </div>
+                <div>
+                    <label for="end_date">end_date</label>
+                    <input type="date" [max]="maxDate" name="end_date" [(ngModel)]="end_date">
+                </div>
+            </div>
+            <div class="footer">
+                <button (click)="fetchSpecificFileByDate()">send</button>
+            </div>
+        </div>
+        
+    </div>
+</div>

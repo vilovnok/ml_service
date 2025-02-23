@@ -1,0 +1,11 @@
+**/node_modules/
+**/.git
+**/README.md
+**/.vscode
+**/LICENSE
+**/npm-debug.log
+**/.env
+**/.editorconfig
+**/.aws
+**/dist
+**/__pycache__

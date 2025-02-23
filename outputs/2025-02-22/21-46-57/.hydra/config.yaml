@@ -1,0 +1,8 @@
+ynx_bot:
+  token: 7420915283:AAEX3haDQeZ84F6zEjKKx1odzFd-9qmOM-Q
+db:
+  host: localhost
+  port: 5433
+  name: yanix
+  user: postgres
+  password: '1234'

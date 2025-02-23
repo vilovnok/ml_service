@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  ynx-frontend:
+    container_name: ynx-frontend
+    restart: always  
+    build: 
+      context: ./ynx-frontend
+    ports:
+      - 80:80
+    expose:
+      - 80  
+    networks:
+      - ynx-net
+
+  ynx-backend:
+    container_name: ynx-backend
+    restart: always  
+    build: 
+      context: ./ynx-frontend
+
+
+  ynx-bot:
+    container_name: ynx-bot
+    build:
+      context: ./ynx_bot
+      dockerfile: Dockerfile
+    volumes:
+      - ./ynx_bot/config.yaml:/ynx_bot/config.yaml
+    restart: unless-stopped
+    environment:
+      - TZ=UTC
+    networks:
+      - ynx-net
+
+  ynx-redis:
+    container_name: ynx-redis
+    image: redis:6.2-alpine
+    ports:
+      - "6380:6379"  
+
+  ynx-postgres:
+    container_name: ynx-postgres
+    image: postgres:14-alpine 
+    restart: unless-stopped
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      # - postgres_storage_ynx:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ynx-net
+
+  ynx-rabbitmq:
+    container_name: ynx-rabbitmq
+    image: rabbitmq:3.7-management
+    hostname: "rabbit"
+    ports:
+      - "4369:4369"
+      - "5672:5672"
+      - "25672:25672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+
+  ynx-pgadmin:
+    container_name: ynx-pgadmin
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASS}
+    ports:
+      - 5050:80
+    depends_on:
+      - ynx-postgres
+    networks:
+      - ynx-net
+
+networks:
+  ynx-net:
+    driver: bridge 
+
+# volumes:
+#   postgres_storage_ynx:
+#     driver: local

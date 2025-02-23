@@ -1,0 +1,67 @@
+<div class="container">
+
+    <div class="block">
+        <div class="header">
+            <h2>Find the user</h2>
+        </div>
+
+        <div class="section_1">
+            <div class="content">
+                <div>
+                    <label for="filename">username</label>
+                    <input type="text" name="username" [(ngModel)]="username">
+                </div>
+                <div>
+                    <label for="filename">e-mail</label>
+                    <input type="email" name="email" [(ngModel)]="email">
+                </div>
+            </div>
+            <div class="footer">
+                <button (click)="fetchUserData()">send</button>
+            </div>
+        </div>
+
+
+        <div class="header">
+            <h2>Edit the user</h2>
+        </div>
+
+        <div class="section_2">
+
+            <div class="content">
+                
+                <div>
+                    <label for="filename">username</label>
+                    <input type="text" name="username" [(ngModel)]="username">
+                </div>
+               
+                <div>
+                    <label for="email">e-mail</label>
+                    <input type="email" name="email" [(ngModel)]="email">
+                </div>
+                
+                <div>
+                    <div>
+                        <label for="category">role:</label>
+                        <select id="category" name="category" [(ngModel)]="role">
+                            <option value="user">user</option>
+                            <option value="admin">admin</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="category">active:</label>
+                        <mat-checkbox [(ngModel)]="active"></mat-checkbox>
+                    </div>
+                </div>
+
+                <div>
+                    <button (click)="saveUser()">Save</button>
+                    <button (click)="removeUser()">Delete</button>
+                </div>
+            
+            </div> 
+
+        </div>
+
+    </div>
+</div>

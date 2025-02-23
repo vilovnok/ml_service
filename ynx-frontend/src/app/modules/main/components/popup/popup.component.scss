@@ -1,0 +1,84 @@
+// $white: #fff;
+$white: #E5E5E5;
+$black: #1e2027;
+$gray: #262a2f;
+$orange: #ff5533;
+$shadow: rgba(0, 0, 0, 0.8);
+$blue: #3498db;
+$blue-shadow: #2980b9;
+$red: red;
+$red-shadow: rgb(159, 18, 18);
+$font-family: "Roboto Mono", monospace;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.block_dialog {
+    background-color: $gray;
+    padding: 2%;
+    height: 26rem;
+    border: 1px solid $black;
+}
+.block_dialog h1 {
+    color: $orange;
+}
+
+.content_dialog {
+    border-radius: 8px;
+    padding: 1%;
+}
+.content_dialog .block_column {
+    display: flex;
+    flex-direction: column; 
+    margin-top: 10px;
+}
+
+.content_dialog .block_column label{ 
+    color: $orange;
+}
+
+.block_row {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-left: 4px;    
+}
+.block_row .content_category {
+min-width: 5rem;
+}
+.block_row .content_category label{
+    color: $orange;
+}
+
+.block_row mat-checkbox {
+    margin: 4% 2% 2% 0.5rem;
+    color: $orange;
+}
+
+.block_column input { 
+    width: 40%;
+    padding: 4px;
+    border: 1px solid $white;
+    border-radius: 4px;
+}
+
+
+.block_dialog button {
+    color: $white;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn_close {background: $red; margin-left: 0.5rem;}
+.btn_save {background: $blue;}
+.btn_close:hover {background-color:  $red-shadow;}
+.btn_save:hover {background-color: $blue-shadow;}
+
+

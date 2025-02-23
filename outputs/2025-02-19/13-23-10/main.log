@@ -1,0 +1,5 @@
+[2025-02-19 13:23:10,583][aiogram.dispatcher][INFO] - Start polling
+[2025-02-19 13:23:11,028][aiogram.dispatcher][INFO] - Run polling for bot @YanixTradebot id=7420915283 - 'YanixTradeBot'
+[2025-02-19 13:23:21,971][aiogram.dispatcher][WARNING] - Received SIGINT signal
+[2025-02-19 13:23:21,972][aiogram.dispatcher][INFO] - Polling stopped for bot @YanixTradebot id=7420915283 - 'YanixTradeBot'
+[2025-02-19 13:23:21,972][aiogram.dispatcher][INFO] - Polling stopped

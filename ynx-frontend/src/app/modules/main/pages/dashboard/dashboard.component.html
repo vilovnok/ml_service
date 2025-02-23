@@ -1,0 +1,67 @@
+<div class="container" [ngStyle]="!this.loadingHandler.isLoading ? {} : {'display': 'flex', 'justify-content': 'center', 'align-items': 'center'}">
+  <div *ngIf="!loadingHandler.isLoading">
+
+    <div class="btn_helps">
+      <button (click)="addcustomer()">Add Admins (+)</button>
+      <button *ngIf="display_btn_h" (click)="OpenPopupDashFilter(1,'')">
+        <img src="/assets/db.png" alt="help">
+      </button>
+    </div>
+
+    <div class="users_metrics">
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <td>username</td>
+              <td>email</td>
+              <td>active</td>
+              <td>role</td>
+              <td>created_at</td>
+              <td>photo</td>
+              <td>action</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of paginatedData">
+              <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
+              <td>
+                <span class="badge" [ngStyle]="{background: user.is_active ? 'green' : 'red'}">
+                  {{user.is_active}}
+                </span>
+              </td>
+              <td>
+                <span class="badge" [ngStyle]="{background: user.role==='admin'? 'red': 'green'}">
+                  {{user.role}}
+                </span>
+              </td>
+              <td>{{user.created_at}}</td>
+              <td>
+                <span class="img_group">
+                  <img [src]="user.avatar_image !== null ? user.avatar_image: 'assets/atom.jpg'" alt="avatar_img">
+                </span>
+              </td>
+              <td>
+                <div>
+                  <button class="btn_send" (click)="editcustomer(user.id)">Edit</button>
+                  <button class="btn_delete" (click)="removecustomer(user.id)">Delete</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <div class="pagination_section">
+          <button (click)="navigateToFirstPage()"><<</button>
+          <button (click)="navigateBackward()"><</button>
+          <button (click)="navigateForward()">></button>
+          <button (click)="navigateToLastPage()">>></button>
+          <span
+            style="color: #ff5533; vertical-align:middle; display: flex; align-items: center;">{{currentPage}}</span>
+          </div>
+      </div>
+    </div>
+  </div>
+  <app-loading *ngIf="loadingHandler.isLoading"></app-loading>
+</div>

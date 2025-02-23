@@ -1,0 +1,8 @@
+<div class="search_block">
+    <div class="search_container">
+      <input matInput type="text" placeholder="search" [(ngModel)]="enterSearchValue" (input)="onSearchTextChange()"> 
+      <button class="btn_clear" *ngIf="enterSearchValue" (click)="clearValue()">
+        <span>x</span>
+      </button>
+    </div>
+</div>

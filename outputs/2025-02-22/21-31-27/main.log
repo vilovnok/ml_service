@@ -1,0 +1,6 @@
+[2025-02-22 21:31:27,232][aiogram.dispatcher][INFO] - Start polling
+[2025-02-22 21:31:27,467][aiogram.dispatcher][INFO] - Run polling for bot @YanixTradebot id=7420915283 - 'YanixTradeBot'
+[2025-02-22 21:31:33,632][aiogram.event][INFO] - Update id=667609225 is handled. Duration 414 ms by bot id=7420915283
+[2025-02-22 21:31:37,044][aiogram.dispatcher][WARNING] - Received SIGINT signal
+[2025-02-22 21:31:37,051][aiogram.dispatcher][INFO] - Polling stopped for bot @YanixTradebot id=7420915283 - 'YanixTradeBot'
+[2025-02-22 21:31:37,051][aiogram.dispatcher][INFO] - Polling stopped

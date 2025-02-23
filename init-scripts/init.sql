@@ -1,0 +1,28 @@
+--- Create tables ---
+
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    hashed_password VARCHAR NOT NULL,
+    role VARCHAR(50) NOT NULL DEFAULT 'users',
+    avatar_image VARCHAR,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    is_verified BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS account (
+    user_id INT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    balance DECIMAL(10, 2) NOT NULL DEFAULT 500
+);
+
+CREATE TABLE IF NOT EXISTS verify (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    code VARCHAR(6) NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    is_active BOOLEAN DEFAULT TRUE
+);

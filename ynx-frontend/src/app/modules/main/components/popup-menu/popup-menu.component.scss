@@ -1,0 +1,52 @@
+$white: #E5E5E5;
+$black: #1e2027;
+$gray: #262a2f;
+$gray_light: #686868;
+$orange: #ff5533;
+$red: red;
+$font-family: "Roboto Mono", monospace;
+
+* {margin: 0; padding: 0;}
+.container {
+    background-color: $gray;
+    width: auto;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .title {
+        align-items: center;
+        width: auto;
+        display: flex;
+        font-size: 12px;
+        justify-content: space-between;
+        flex-direction: row;
+        margin:0 2rem 1rem 2rem;
+        h1{color: $orange;}
+        button {
+            font-size: 20px;
+            margin-left: 30px;
+            color: $white;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            padding: 5px;
+          }
+    }
+    .routes {
+        display: flex;
+        flex-direction: column;
+        button {
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 4px;
+            height: 40px;
+            background-color: $black;
+            color: $orange;
+            border: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            >div {margin: 0 2rem;}
+        }
+    }
+}
