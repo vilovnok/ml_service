@@ -33,3 +33,9 @@ INSERT INTO account (user_id) VALUES (1);
 
 
 docker exec -it d2a66487c777 psql -U postgres -d yanix
+
+
+BackLogger
+
+1) Посмотреть на code в Verify services, а именно на schemes
+Как бы VerifyCreate и VerifyCreateV2 ?

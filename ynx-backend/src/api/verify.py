@@ -18,9 +18,10 @@ async def get_verify_code(
 
 @router.post('/send-code')
 async def send_code(
-    data: VerifyCreate,
+    data: VerifyCreateV2,
     uow: UOWDep
 ):
+    print()
     res = await VerifyService().send_verify_code(uow, data)
     return res
 

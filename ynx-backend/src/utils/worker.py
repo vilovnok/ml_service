@@ -7,7 +7,8 @@ from models.search import *
 
 celery = Celery(
     __name__, 
-    broker=f"amqp://{RABBITMQ_DEFAULT_USER}:{RABBITMQ_DEFAULT_PASS}@{RABBITMQ_DEFAULT_HOST}:{RABBITMQ_DEFAULT_PORT}",
+    # broker=f"amqp://{RABBITMQ_DEFAULT_USER}:{RABBITMQ_DEFAULT_PASS}@{RABBITMQ_DEFAULT_HOST}:{RABBITMQ_DEFAULT_PORT}",
+    broker=f"redis://{REDIS_HOST}:{REDIS_PORT}",
     backend=f"redis://{REDIS_HOST}:{REDIS_PORT}",
 )
 

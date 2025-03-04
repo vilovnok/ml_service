@@ -6,6 +6,10 @@ class VerifyCreate(BaseModel):
     user_id: int
     code: int = Field(gt=100000, lt=999999)
 
+class VerifyCreateV2(BaseModel):
+    user_id: int
+    code: str
+
 class VerifyUserID(BaseModel):
     user_id: int
 

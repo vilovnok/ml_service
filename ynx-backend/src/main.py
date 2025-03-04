@@ -13,6 +13,7 @@ from config import REDIS_HOST, REDIS_PORT
 app = FastAPI(title='RestAPI')
 origins = ["http://localhost:80",
            "http://localhost:4200",
+           "http://localhost:50428",
            "http://0.0.0.0:80"]
 
 app.add_middleware(

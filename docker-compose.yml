@@ -4,34 +4,38 @@ services:
   ynx-frontend:
     container_name: ynx-frontend
     restart: always  
-    build: 
+    build:
       context: ./ynx-frontend
     ports:
-      - 80:80
+      - 4200:80
     expose:
       - 80  
     networks:
       - ynx-net
 
-  ynx-backend:
-    container_name: ynx-backend
-    restart: always  
-    build: 
-      context: ./ynx-frontend
+  # ynx-backend:
+  #   container_name: ynx-backend
+  #   restart: always  
+  #   build: 
+  #     context: ./ynx-backend
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./ynx_backend/config.yaml:/ynx_backend/config.yaml
 
 
-  ynx-bot:
-    container_name: ynx-bot
-    build:
-      context: ./ynx_bot
-      dockerfile: Dockerfile
-    volumes:
-      - ./ynx_bot/config.yaml:/ynx_bot/config.yaml
-    restart: unless-stopped
-    environment:
-      - TZ=UTC
-    networks:
-      - ynx-net
+
+  # ynx-bot:
+  #   container_name: ynx-bot
+  #   restart: unless-stopped
+  #   build:
+  #     context: ./ynx_bot
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./ynx_bot/config.yaml:/ynx_bot/config.yaml
+  #   environment:
+  #     - TZ=UTC
+  #   networks:
+  #     - ynx-net
 
   ynx-redis:
     container_name: ynx-redis

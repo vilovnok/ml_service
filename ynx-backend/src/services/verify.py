@@ -16,27 +16,27 @@ from utils.worker import send_email_code
 
 
 class VerifyService:
-    async def send_verify_code(self, uow: IUnitOfWork, data: VerifyCreate):
+    async def send_verify_code(self, uow: IUnitOfWork, data: VerifyCreateV2):
         try:
             async with uow:
-                verify: VerifyRead= await uow.verify.get_one(user_id=data.user_id, is_active=True,n_tab=0)
-                                
-                if verify.code != data.code:
+                verify = await uow.verify.get_one(user_id=data.user_id, is_active=True,n_tab=0)
+            
+                if str(verify.code) != data.code:
                     await uow.rollback()
                     raise HTTPException(status_code=400, detail='Incorrect code')
                 
 
                 limit_time = datetime.utcnow()
-                created_time = verify.created_at + timedelta(minutes=100)
-                
+                created_time = verify.created_at + timedelta(minutes=100)                
                 
                 if created_time.timestamp() < limit_time.timestamp():
                     await uow.rollback()
                     raise HTTPException(status_code=400, detail='Incorrect code')
                 
                 await uow.user.update(where=[Users.id == verify.user_id], n_tab=0,values={'is_verified': True})
-                await uow.verify.update([Verify.user_id == verify.user_id, Verify.is_active == True], {'is_active': False},n_tab=0)
+                await uow.verify.update([Verify.user_id == verify.user_id, Verify.is_active == True], {'is_active': False}, n_tab=0)
                 await uow.commit()
+
                 res = {"status": 'SUCCESS', "message":'Enter your details'}
                 return res
         except NoResultFound:     
