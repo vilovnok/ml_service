@@ -21,7 +21,4 @@ export class CustomPaginatorComponent implements OnInit {
     this.pages=Array.from({length: this.totalPages}, (_, i)=> i + 1);
    }
   }
-
-
-
 }

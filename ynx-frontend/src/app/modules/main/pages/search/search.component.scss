@@ -54,13 +54,15 @@ $gray_back: #242629;
   }
 }
 
+
+
 ////////////////////////////////
 ///////////////////////
 ///// Chat content
 ///
 
 .messages {
-  height: 36rem;
+  height: 46rem;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -68,6 +70,7 @@ $gray_back: #242629;
   background-color: $gray_back;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
+  background-color: $gray_back;
 }
 
 .chatbox {

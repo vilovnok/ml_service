@@ -1,17 +1,17 @@
 version: '3.8'
 
 services:
-  ynx-frontend:
-    container_name: ynx-frontend
-    restart: always  
-    build:
-      context: ./ynx-frontend
-    ports:
-      - 4200:80
-    expose:
-      - 80  
-    networks:
-      - ynx-net
+  # ynx-frontend:
+  #   container_name: ynx-frontend
+  #   restart: always  
+  #   build:
+  #     context: ./ynx-frontend
+  #   ports:
+  #     - 4200:80
+  #   expose:
+  #     - 80  
+  #   networks:
+  #     - ynx-net
 
   # ynx-backend:
   #   container_name: ynx-backend
@@ -54,7 +54,6 @@ services:
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_DB=${DB_NAME}
     volumes:
-      # - postgres_storage_ynx:/var/lib/postgresql/data
       - ./init-scripts:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
@@ -83,7 +82,7 @@ services:
     restart: unless-stopped
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
-      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASS}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
     ports:
       - 5050:80
     depends_on:

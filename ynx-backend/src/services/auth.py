@@ -8,6 +8,8 @@ from models.user import Users
 from datetime import timedelta
 from config import SECRET, REFRESH_SECRET, ALGORITHM
 
+
+
 class AuthService:
     async def register(self, uow: IUnitOfWork, data: AuthRegister):
         user_model = UserCreate(
@@ -43,7 +45,6 @@ class AuthService:
                 return res
 
             if username_checker:
-                print(f'{username_checker}'*50)
                 if is_verified_username_checker:
                     await uow.rollback()
                     raise HTTPException(status_code=400, detail='Пользователь с таким username уже существует!')

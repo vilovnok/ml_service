@@ -35,6 +35,8 @@ export class VerifyComponent {
 
   get_code():void{
     let user_id = Number(this.service.getDataFromLS('user_id'));
+    console.log("user_id: ", user_id);
+    console.log("user_id: ", user_id);
     this.service.handle_get_requests(user_id,'verify/get-code').subscribe({
       next: (res) => {
         console.log("code: ", res);

@@ -26,19 +26,7 @@ export class SearchComponent implements OnInit {
   messages: { role: string; text: string; collapsibleText?: string; isCollapsed?: boolean; id?: number  }[] = [
     {
       'role': 'ai',
-      'text': "Привет! Я MedFusion - твой персональный помощник по доказательной медицине.\n\nОсобенности: \n1) В моей базе данных содержатся только обзоры статей с сайта доказательной медицины Cochrane Library, опубликованные с 2003 года по ноябрь 2024 года. В моей базе данных нет клинических рекомендаций, но я все равно постараюсь тебе помочь! \n2) Я умею отвечать на общие медицинские вопросы, а также искать информацию по конкретной статье (по точному названию или по ссылке на doi). \n3) В нашем диалоге я помню только последние четыре сообщения. Историю чата можно сбросить при нажатии кнопки clear.\n4) По окончании диалога, пожалуйста оставьте обратную связь, нажав на 👍/👎 \n5) Я могу тратить до нескольких минут на ответ, поскольку очень тщательно ищу для вас информацию, прошу прощения за возможное длительное ожидание!",
-    },
-    {
-      'role': 'human',
-      'text': "Привет! Я MedFusion - твой персональный помощник по доказательной медицине.\n\nОсобенности: \n1) В моей базе данных содержатся только обзоры статей с сайта доказательной медицины Cochrane Library, опубликованные с 2003 года по ноябрь 2024 года. В моей базе данных нет клинических рекомендаций, но я все равно постараюсь тебе помочь! \n2) Я умею отвечать на общие медицинские вопросы, а также искать информацию по конкретной статье (по точному названию или по ссылке на doi). \n3) В нашем диалоге я помню только последние четыре сообщения. Историю чата можно сбросить при нажатии кнопки clear.\n4) По окончании диалога, пожалуйста оставьте обратную связь, нажав на 👍/👎 \n5) Я могу тратить до нескольких минут на ответ, поскольку очень тщательно ищу для вас информацию, прошу прощения за возможное длительное ожидание!",
-    },
-    {
-      'role': 'ai',
-      'text': "Привет! Я MedFusion - твой персональный помощник по доказательной медицине.\n\nОсобенности: \n1) В моей базе данных содержатся только обзоры статей с сайта доказательной медицины Cochrane Library, опубликованные с 2003 года по ноябрь 2024 года. В моей базе данных нет клинических рекомендаций, но я все равно постараюсь тебе помочь! \n2) Я умею отвечать на общие медицинские вопросы, а также искать информацию по конкретной статье (по точному названию или по ссылке на doi). \n3) В нашем диалоге я помню только последние четыре сообщения. Историю чата можно сбросить при нажатии кнопки clear.\n4) По окончании диалога, пожалуйста оставьте обратную связь, нажав на 👍/👎 \n5) Я могу тратить до нескольких минут на ответ, поскольку очень тщательно ищу для вас информацию, прошу прощения за возможное длительное ожидание!",
-    },
-    {
-      'role': 'human',
-      'text': "Привет! Я MedFusion - твой персональный помощник по доказательной медицине.\n\nОсобенности: \n1) В моей базе данных содержатся только обзоры статей с сайта доказательной медицины Cochrane Library, опубликованные с 2003 года по ноябрь 2024 года. В моей базе данных нет клинических рекомендаций, но я все равно постараюсь тебе помочь! \n2) Я умею отвечать на общие медицинские вопросы, а также искать информацию по конкретной статье (по точному названию или по ссылке на doi). \n3) В нашем диалоге я помню только последние четыре сообщения. Историю чата можно сбросить при нажатии кнопки clear.\n4) По окончании диалога, пожалуйста оставьте обратную связь, нажав на 👍/👎 \n5) Я могу тратить до нескольких минут на ответ, поскольку очень тщательно ищу для вас информацию, прошу прощения за возможное длительное ожидание!",
+      'text': 'Привет! Я Yanix - твой персональный помощник. Базируюсь на языковой модели T5 (<a href="https://huggingface.co/r1char9/T5_chat" target="_blank">ссылка</a>).'
     },
   ];
 
@@ -51,53 +39,70 @@ export class SearchComponent implements OnInit {
 
 
   ngOnInit(): void { 
-    // this.loadposts(); 
+    const reqBody = {'user_id': localStorage.getItem('user_id')}
+    this.getMessage(reqBody);
   }
 
 
   async generate() {
-    if (!this.input_text.trim()) {
+    const input = this.input_text.trim();
+  
+    if (!input || !localStorage.getItem('token')) {
       this.input_text = '';
       return;
     }
-    if (!localStorage.getItem('token') || localStorage.getItem('token') === undefined) { 
-      return;
-    }      
-
-    const role = 'human';
-    const human_text = this.input_text.trim();
-    this.addMessage(role, human_text)
   
+    this.addMessage('human', input);
     this.input_text = '';
-    await this.sleep(2000);
     this.istyping = true;
-
-    const reqBody = {      
-      "text": human_text,
-      "user_id": localStorage.getItem('user_id')
-    }
-
-    this.service.handle_post_requests(reqBody, 'agent/generate').subscribe(async response => {
-      
-      await this.sleep(1000);
-      this.istyping = false;
-      const role = response['role']
-      const ai_text = response['ai_text'].replace(/Ссылки[\s\S]*/g, '');      
-      const metadata = response['full_metadata']
-      const id = response['id']
-      this.addMessage(role, ai_text, true, metadata, id);
-    }, async error => {
-      
-      await this.sleep(2000);
-      const role = 'ai';
-      const bot_text = 'Произошла ошибка при обработке вашего запроса. Пожалуйста, проверьте ваш токен.'
-      this.addMessage(role, bot_text);
-      this.istyping = false;
-      this.isPlaye = false;
-      localStorage.removeItem('token');
-      this.input_text = ''
-    });
+  
+    await this.sleep(2000);
+  
+    const reqBody = { message: input };
+    console.log(reqBody);
+  
+    this.service.handle_post_requests(reqBody, 'generate/generate_text').subscribe(
+      async response => {
+        const token = response['token'];
+  
+        const checkInterval = setInterval(() => {
+          this.service.handle_get_requests(token, 'generate/get_message').subscribe(
+            res => {
+              if (res.status === 'completed') {
+                clearInterval(checkInterval);
+                this.istyping = false;
+                this.addMessage('ai', res['message_gen']);
+              }
+            },
+            error => {
+              if (error.status !== 404) {
+                clearInterval(checkInterval);
+                this.istyping = false;
+                this.addMessage('ai', 'Произошла ошибка при проверке статуса запроса.');
+              }
+            }
+          );
+        }, 2000);
+      },
+      async error => {
+        if (error.status == 403) {
+          this.toast.error({
+            detail: "Balance",
+            summary: error.error.detail,            
+          });
+          this.istyping = false;
+          this.isPlaye = false;
+          this.input_text = '';
+        }else {
+        await this.sleep(2000);
+        this.addMessage('ai', 'Произошла ошибка при обработке вашего запроса. Пожалуйста, проверьте ваш токен.');
+        this.istyping = false;
+        this.isPlaye = false;
+        this.input_text = '';
+      }}
+    );
   }
+  
 
   private scrollToBottom(): void {
     this.chatbox.nativeElement.scrollTop = this.chatbox.nativeElement.scrollHeight;
@@ -113,76 +118,40 @@ export class SearchComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(formattedText);
   }
 
-  addMessage(role: string, text: string, 
-    isCollapsed?: boolean, 
-    collapsibleText?: string, id?: number): void {
-
+  addMessage(role: string, text: string, id?: number): void {
   this.messages.push({ 'role': role, 
   'text': text, 
-  'isCollapsed': isCollapsed, 
-  'collapsibleText': collapsibleText,
   'id': id,
   });
-
-this.scrollToBottom();
+  this.scrollToBottom();
 }
 
   getMessage(reqBody: any) {
-
     interface Message {
       id?: number
       user_id: number;
-      ai_text?: string; 
-      human_text?: string;
+      message_gen?: string; 
+      message?: string;
       created_at: string;
-      liked?: boolean;
-      full_metadata?: string;
   }
-    this.service.handle_post_requests(reqBody, 'agent/get-messages').subscribe(response => {
-      
+    this.service.handle_get_all_requests('generate/get_chat').subscribe(response => {
       const sortedPosts = response['messages'].posts.sort((a: any, b: any) => {
         return a.id - b.id;
       });
 
       sortedPosts.forEach((message: Message) => {
-        if (message.human_text) {
-          this.addMessage('human', message.human_text.trim());
+        if (message.message) {
+          this.addMessage('human', message.message.trim());
         }
-        if (message.ai_text) {
-          const ai_text = message.ai_text.replace(/Ссылки[\s\S]*/g, '');
-          this.addMessage('ai', ai_text, true, message.full_metadata, message.id);
+        if (message.message_gen) {
+          const message_gen = message.message_gen.trim();
+          this.addMessage('ai', message_gen);
         }
       });
-    }, err => {
-      if (err.status === 404){
-        this.router.navigate(['reg']);
-      }
-      
-    });
+    }, err => {});
   }
-
-
-
-
-
-
-  checkToken(reqBody: any) {
-    this.service.handle_post_requests(reqBody, 'agent/check-token').subscribe(response => {
-      localStorage.setItem('token', response.token);
-      this.isPlaye = true;
-    },error => {      
-        // this.showDialog('2'); 
-        localStorage.removeItem('token');
-      this.isPlaye = false;
-    });
-  }
-
-
-
 
   loadposts() {
     this.loadingHandler.showLoading();
   }
-
-  
 }

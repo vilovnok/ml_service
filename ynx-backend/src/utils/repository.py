@@ -62,9 +62,9 @@ class SQLAlchemyRepository(AbstractRepository):
         
     async def add_one(self, data: dict, n_tab: int):
         try:
-            stmt = insert(self.model[n_tab]).values(**data).returning(self.model[n_tab].id)            
-            res_id = await self.session.execute(stmt)            
-            return res_id.scalar_one()
+            stmt = insert(self.model[n_tab]).values(**data).returning(self.model[n_tab])            
+            res = await self.session.execute(stmt)            
+            return res.scalar_one()            
         except Exception as err:
             print(f'ERROR {err}')
             return None

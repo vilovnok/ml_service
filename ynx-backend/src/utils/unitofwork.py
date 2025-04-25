@@ -2,13 +2,17 @@ from abc import ABC, abstractmethod
 from db.db import AsyncSession, async_session_maker
 from repositories.user import UserRepository
 from repositories.verify import VerifyRepository
-from repositories.search import SearchRepository
+from repositories.account import AccountRepository
+from repositories.request import RequestRepository
+from repositories.request_security import RequestSecurityRepository
 from typing import Type
 
 class IUnitOfWork(ABC):
     user: Type[UserRepository]
     verify: Type[VerifyRepository]
-    search: Type[SearchRepository]
+    account: Type[AccountRepository]
+    request: Type[RequestRepository]
+    request_security: Type[RequestSecurityRepository]
 
     @abstractmethod
     def __init__(self):
@@ -38,7 +42,9 @@ class UnitOfWork(IUnitOfWork):
         self.session: AsyncSession = self.session_factory()
         self.user = UserRepository(self.session)
         self.verify = VerifyRepository(self.session)
-        self.search = SearchRepository(self.session)
+        self.account = AccountRepository(self.session)
+        self.request = RequestRepository(self.session)
+        self.request_security = RequestSecurityRepository(self.session)
 
     async def __aexit__(self, *args):
         await self.rollback()

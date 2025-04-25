@@ -30,11 +30,8 @@ EMAIL_PASS = os.environ.get('EMAIL_PASS')
 SMTP_HOST = os.environ.get('SMTP_HOST')
 SMTP_PORT = os.environ.get('SMTP_PORT')
 
-PATH_TRASH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'utils/temp')
-PATH_ATTACHMENTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'utils/dataset/attachments')
-PATH_DATASET = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'utils/dataset')
-NAME_RAW_ZIP='raw_arch.zip'
-NAME_PREP_ZIP='prep_arch.zip'
+MODEL_ID_CHAT = os.environ.get('MODEL_ID_CHAT')
+MODEL_ID_CLS = os.environ.get('MODEL_ID_CLS')
 
 
 

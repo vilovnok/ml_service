@@ -9,7 +9,7 @@ class Verify(Base):
     __table_args__ = {'extend_existing': True}
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True, autoincrement=True, unique=True)
-    user_id = Column(Integer, ForeignKey('user.id'), primary_key=True, nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id'), primary_key=True, nullable=False)
     code = Column(Integer, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), server_default=text('CURRENT_TIMESTAMP'),onupdate=text('CURRENT_TIMESTAMP'))
     is_active = Column(Boolean, default=True)

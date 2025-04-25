@@ -13,6 +13,7 @@ async def get_verify_code(
     user_id: int,
     uow: UOWDep
 ):
+    print('*'*10)
     res = await VerifyService().get_verify_code(uow, user_id)
     return res
 

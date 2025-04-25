@@ -12,10 +12,10 @@ const routes: Routes = [
     path: "", 
     component: MainComponent, 
     children: [
-    {path: "search", component: SearchComponent, title: "Search"},
-    {path: "pipeline", component: PipelineComponent, title: "Pipeline"},
+    {path: "generate", component: SearchComponent, title: "Generate"},
+    {path: "illustrate", component: PipelineComponent, title: "Illustrate"},
     {path: "dashboard", component: DashboardComponent, title: "Dashboard",canActivate:[dashboardGuard]},
-    { path: '', redirectTo: '/home/search', pathMatch: 'full' },
+    { path: '', redirectTo: '/home/generate', pathMatch: 'full' },
     ],
   },
 ];

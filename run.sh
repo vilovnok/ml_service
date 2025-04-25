@@ -11,5 +11,5 @@ elif [[ "${1}" == "ba" ]]; then
     uvicorn main:app --reload
 elif [[ "${1}" == "fr" ]]; then
     cd ynx-frontend
-    ng serve
+    ng serve --port 4200
 fi
