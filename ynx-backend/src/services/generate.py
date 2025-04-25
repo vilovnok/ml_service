@@ -91,11 +91,16 @@ class GenerateService:
 
     async def check_balance(self, uow: IUnitOfWork, user: UsersRead, token: str):
         async with uow:
+            print(token)
             message = await uow.request_security.get_one(token=token, n_tab=0)
             account = await uow.account.get_one(user_id=user.id, n_tab=0)
-
+            print(message)
             if message is None:
-                raise HTTPException(status_code=404, detail="Account not found")
-                    
-            return {'status': message.status, 'message_gen': message.message_gen, 'balance': account.balance}
-        
+                raise HTTPException(status_code=404, detail="Message not found")
+            
+            status = message.status 
+            balance = account.balance
+            message_gen = message.message_gen
+
+            if status == 'completed':
+                return {'status': status, 'message_gen': message_gen, 'balance': balance}

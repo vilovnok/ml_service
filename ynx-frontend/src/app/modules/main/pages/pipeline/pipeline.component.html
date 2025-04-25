@@ -1,9 +1,15 @@
 <div class="container">
   <div class="balance-wrapper">
     <h2>Пополнение баланса</h2>
-    <input class="balance-input" [(ngModel)]="input_text"  type="text" placeholder="Введите сумму или команду..." (keyup.enter)="generate()"/>
+    <textarea
+      class="balance-textarea"
+      [(ngModel)]="input_text"
+      placeholder="убеждение..."
+      (keyup.enter)="generate()"
+      rows="3"
+    ></textarea>
     <p class="balance-description">
-      Если вы хотите пополнить баланс — вам нужно <span class="highlight">обойти защиту</span>.
+      Если вы хотите пополнить баланс — вам нужно уговорить <span class="highlight">Yanix-а</span>.
     </p>
   </div>
 </div>

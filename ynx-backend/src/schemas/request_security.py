@@ -15,8 +15,8 @@ class RequestSecurityRead(TunedModel):
     started_at: datetime
     finished_at: datetime = Field(default=None) 
 
-class RequestSecurityRead(BaseModel):
-    posts: List[RequestSecurityRead]
+# class RequestSecurityRead(BaseModel):
+#     posts: List[RequestSecurityRead]
 
 class RequestSecurityCreate(BaseModel):
     user_id: int

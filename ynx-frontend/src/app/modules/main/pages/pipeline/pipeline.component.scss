@@ -61,5 +61,24 @@ $gray_back: #242629;
       font-weight: 600;
     }
   }
+
+  .balance-textarea {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #2e2e2e;
+    color: #eee;
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.2);
+    resize: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 12px rgba(255, 102, 0, 0.5);
+    }
+  }
+
 }
 

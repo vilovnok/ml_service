@@ -77,19 +77,22 @@ def topUpBalance(user_id: int, message: str, token: str):
                 SET status = 'failed', message_gen = %s, finished_at = %s
                 WHERE token = %s;
             """
+    
     try:
         conn = conn_to_db()
         cursor = conn.cursor()         
         finished_at = datetime.now(ZoneInfo("Europe/Moscow"))
         message_gen = topUp_fun(message=message)
-
-        if message_gen=='INJECTION':
+        message_gen = message_gen[0]['label']
+        
+        if message_gen=='убедил':
             cursor.execute(query_update_completed, (message_gen, finished_at, token))            
             cursor.execute(query_top_up_balance, (10, user_id))
-            conn.commit()       
+            conn.commit()
         else:
+            cursor.execute(query_update_completed, (message_gen, finished_at, token))
             cursor.execute(query_top_up_balance, (0, user_id))
-            conn.commit()       
+            conn.commit()
     except Exception as e:
         cursor.execute(query_update_failure, ('nan', finished_at, token))
         conn.commit()       

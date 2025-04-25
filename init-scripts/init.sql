@@ -38,3 +38,14 @@ CREATE TABLE IF NOT EXISTS request (
     started_at TIMESTAMP WITH TIME ZONE NOT NULL,
     finished_at TIMESTAMP WITH TIME ZONE DEFAULT NULL
 );
+
+CREATE TABLE IF NOT EXISTS request_security (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    status VARCHAR NOT NULL DEFAULT 'pending',
+    token VARCHAR NOT NULL,
+    message VARCHAR NOT NULL,
+    message_gen VARCHAR DEFAULT '',
+    started_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    finished_at TIMESTAMP WITH TIME ZONE DEFAULT NULL
+);

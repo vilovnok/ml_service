@@ -3,9 +3,6 @@ from huggingface_hub import login
 
 from config import MODEL_ID_CHAT, MODEL_ID_CLS
 
-import torch
-
-
 
 login(token='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')
 
@@ -14,6 +11,9 @@ chat_tokenizer = AutoTokenizer.from_pretrained(MODEL_ID_CHAT)
 
 cls_tokenizer = AutoTokenizer.from_pretrained(MODEL_ID_CLS)
 cls_model = AutoModelForSequenceClassification.from_pretrained(MODEL_ID_CLS)
+new_labels = {0: 'не убедил', 1: 'убедил'}
+cls_model.config.id2label = new_labels
+cls_model.config.label2id = {v: k for k, v in new_labels.items()}
 
 
 def chat_fun(message: str):
@@ -21,6 +21,6 @@ def chat_fun(message: str):
     res = chat_model.generate(**tokenized_sentence, num_beams=2, max_length=100)  
     return chat_tokenizer.decode(res[0], skip_special_tokens=True)
 
-def topUp_fun(message: str):        
-    pipe = pipeline('text-classification', model=cls_model, tokenizer=cls_tokenizer)
-    return pipe.classifier(message)
+def topUp_fun(message: str):      
+    pipe = pipeline('text-classification', model=cls_model, tokenizer=cls_tokenizer, device='cpu')
+    return pipe(message)

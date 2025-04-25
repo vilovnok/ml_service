@@ -1,7 +1,7 @@
 from schemas.request_security import *
 
 from db.db import Base
-from sqlalchemy import (Column, TIMESTAMP, Integer, ForeignKey, String, text)
+from sqlalchemy import (Column, TIMESTAMP, Integer, ForeignKey, String)
 from sqlalchemy.orm import Mapped, mapped_column
 
 

@@ -47,7 +47,9 @@ class VerifyService:
         try:
             user_id = int(user_id)            
             async with uow:                
-                user = await uow.user.get_one(id=user_id,n_tab=0)
+                user = await uow.user.get_one(id=user_id, n_tab=0)
+
+                print(user)
                 
                 if user.is_verified:
                     await uow.rollback()

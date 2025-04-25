@@ -45,3 +45,13 @@ async def security_gen(
 ):
     res = await GenerateService().topUpBalance(uow, user, data)
     return res
+
+
+@router.get('/check-balance/{token}', status_code=200)
+async def check_balance(    
+    token: str,
+    user: CurrentUser,
+    uow: UOWDep,
+):
+    res = await GenerateService().check_balance(uow, user, token)
+    return res
