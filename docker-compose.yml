@@ -1,48 +1,48 @@
 version: '3.8'
 
 services:
-  # ynx-frontend:
-  #   container_name: ynx-frontend
-  #   restart: always  
-  #   build:
-  #     context: ./ynx-frontend
-  #   ports:
-  #     - "${FR_PORT}:80"
-  #   networks:
-  #     - ynx-net
+  ynx-frontend:
+    container_name: ynx-frontend
+    restart: always  
+    build:
+      context: ./ynx-frontend
+    ports:
+      - "${FR_PORT}:80"
+    networks:
+      - ynx-net
 
-  # ynx-backend:
-  #   container_name: ynx-backend  
-  #   restart: always  
-  #   build: 
-  #     context: ./ynx-backend 
-  #   ports:
-  #     - "8000:8000"
-  #   command: ["sh","/ynx-backend/app_run.sh","app"]
-  #   depends_on:
-  #     ynx-redis: 
-  #       condition: service_started      
-  #     ynx-postgres:          
-  #       condition: service_healthy
-  #   environment:
-  #     - DATABASE_URL=postgresql+asyncpg://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME} 
-  #     - CELERY_BROKER_URL=redis://ynx-redis:6379/0
-  #   networks:
-  #     - ynx-net
+  ynx-backend:
+    container_name: ynx-backend  
+    restart: always  
+    build: 
+      context: ./ynx-backend 
+    ports:
+      - "8000:8000"
+    command: ["sh","/ynx-backend/app_run.sh","app"]
+    depends_on:
+      ynx-redis: 
+        condition: service_started      
+      ynx-postgres:          
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME} 
+      - CELERY_BROKER_URL=redis://ynx-redis:6379/0
+    networks:
+      - ynx-net
 
-  # ynx-celery:
-  #   container_name: ynx-celery    
-  #   restart: always  
-  #   build:
-  #     context: ./ynx-backend
-  #   command: ["/ynx-backend/celery_run.sh","celery_run"]    
-  #   depends_on:
-  #     - ynx-redis
-  #     - ynx-backend
-  #   environment:
-  #     - CELERY_BROKER_URL=redis://ynx-redis:6379/0
-  #   networks:
-  #     - ynx-net    
+  ynx-celery:
+    container_name: ynx-celery    
+    restart: always  
+    build:
+      context: ./ynx-backend
+    command: ["/ynx-backend/celery_run.sh","celery_run"]    
+    depends_on:
+      - ynx-redis
+      - ynx-backend
+    environment:
+      - CELERY_BROKER_URL=redis://ynx-redis:6379/0
+    networks:
+      - ynx-net    
 
   ynx-redis:
     container_name: ynx-redis
