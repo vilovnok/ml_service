@@ -1,0 +1,215 @@
+$white: #E5E5E5;
+$black: #1e2027;
+$gray_light: #686868;
+$gray: #262a2f;
+$orange: #ff5533;
+$shadow: rgba(0, 0, 0, 0.8);
+$font-family: "Roboto Mono", monospace;
+$gray_back: #242629;
+
+
+
+.container {
+  width: auto;
+  height: 100%;
+  background-color: $gray;
+
+  >div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 48px 0px 0px 0px;
+  }
+}
+
+@media (max-width:992px) {
+  .container {height: auto;
+    >div {padding: 48px 0px 48px 0px;}
+  }
+  .navbar_container {  
+    >div {
+      width: 36rem;
+      .items {
+        >div {
+          .part_1_block {
+            width: 18rem;
+            display: flex;
+            flex-direction: column;
+          }
+          .part_2_block {
+            margin-left: 1rem;
+            width: 10.2rem;
+            display: flex;
+            flex-direction: column;
+          }
+          .part_3_block {
+            width: auto;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+          }
+        }  
+      }
+    }
+  }
+}
+
+
+
+////////////////////////////////
+///////////////////////
+///// Chat content
+///
+
+.messages {
+  height: 46rem;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: $gray_back;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  background-color: $gray_back;
+}
+
+.chatbox {
+  padding: 15px;
+  overflow-y: auto;
+  height: 100%;
+  width: auto;
+  background-color: $gray_back;
+ 
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  p {
+    white-space: pre-wrap;
+    margin: 10px 0 0px 0;
+    padding: 8px 16px;
+    border-radius: 10px;
+    word-wrap: break-word;
+    background-color: #eaeaea;
+  }
+
+  .chat-message-bot {
+    display: flex;
+    flex-direction: column;
+    .details {
+      margin-right: auto;
+      max-width: calc(100% - 130px);
+
+      p {
+        font-weight: 400px;
+        color: $gray_back;
+        border-radius: 18px 18px 18px 0;
+      }
+    }
+  }
+
+  .chat-message-human {
+    display: flex;
+    .details {      
+      margin-left: auto;
+      max-width: calc(100% - 130px);
+
+      p {
+        border-radius: 18px 18px 0 18px;
+        font-weight: 400px;
+        color: $gray_back;
+        background-color: $orange !important;
+      }
+    }
+  }
+
+  @keyframes blink {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+  }
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid $orange;
+}
+
+.input_block {
+  display: flex;
+  justify-content: center;
+  background-color: $gray;
+  
+  .chat-container {            
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    background-color: $black;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;   
+
+    textarea {
+      flex-grow: 1;
+      border: none;
+      resize: none;
+      outline: none;
+      line-height: 1.5;
+      padding: 10px;       
+      background: none;         
+      color: white;
+      font-weight: 14px;
+      word-wrap: break-word;
+    }
+    textarea::-webkit-scrollbar-track {
+      background-color: $gray;
+      border-radius: 6px;
+    }
+    textarea::placeholder {
+      color: #b0b0b0;
+    }
+
+    .textarea-container {
+      padding: 10px;
+      display: flex;
+      justify-content: right;
+    
+      button {
+        margin-left: 10px;
+        background: #ffff;
+        border-radius: 50px;
+        aspect-ratio: 1;
+        right: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
+
+.chat-typing p {
+  font-style: italic;
+  color: gray;
+  animation: blink 1s infinite;
+  width: 20%;
+  border-radius: 18px 18px 18px 0;
+}
+
+

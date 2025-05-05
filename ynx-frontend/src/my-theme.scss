@@ -1,0 +1,18 @@
+@import '@angular/material/theming';
+@include mat-core();
+
+$event-theme-primary: mat-palette($mat-green);
+$event-theme-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$event-theme-warn: mat-palette($mat-red);
+
+$event-theme: mat-light-theme($event-theme-primary, $event-theme-accent, $event-theme-warn);
+
+@include angular-material-theme($event-theme);
+
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    --primary-color: blue;
+}

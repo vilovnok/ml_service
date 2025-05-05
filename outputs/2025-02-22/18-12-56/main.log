@@ -1,0 +1,11 @@
+[2025-02-22 18:12:56,230][aiogram.dispatcher][INFO] - Start polling
+[2025-02-22 18:12:56,925][aiogram.dispatcher][INFO] - Run polling for bot @YanixTradebot id=7420915283 - 'YanixTradeBot'
+[2025-02-22 18:13:01,532][aiogram.event][INFO] - Update id=667609168 is handled. Duration 335 ms by bot id=7420915283
+[2025-02-22 18:13:06,024][aiogram.event][INFO] - Update id=667609169 is handled. Duration 219 ms by bot id=7420915283
+[2025-02-22 18:13:28,905][aiogram.event][INFO] - Update id=667609170 is handled. Duration 184 ms by bot id=7420915283
+[2025-02-22 18:13:34,403][aiogram.event][INFO] - Update id=667609171 is handled. Duration 116 ms by bot id=7420915283
+[2025-02-22 18:13:46,056][aiogram.event][INFO] - Update id=667609172 is handled. Duration 555 ms by bot id=7420915283
+[2025-02-22 18:13:56,661][aiogram.event][INFO] - Update id=667609173 is handled. Duration 123 ms by bot id=7420915283
+[2025-02-22 18:18:23,620][aiogram.dispatcher][WARNING] - Received SIGINT signal
+[2025-02-22 18:18:23,623][aiogram.dispatcher][INFO] - Polling stopped for bot @YanixTradebot id=7420915283 - 'YanixTradeBot'
+[2025-02-22 18:18:23,623][aiogram.dispatcher][INFO] - Polling stopped

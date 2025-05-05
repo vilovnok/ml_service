@@ -1,0 +1,42 @@
+<div class="container" [ngStyle]="loadingHandler.isLoading ? {'display': 'flex', 'justify-content': 'center', 'align-items': 'center', 'height':'100%','width': 'auto'} : {}">
+  <div *ngIf="!loadingHandler.isLoading">
+      <div class="messages">
+        <div class="chatbox" #chatbox>
+              <div *ngFor="let item of messages; let i = index" [ngClass]="{
+                  'chat-message-bot': item.role === 'ai',
+                  'chat-message-human': item.role === 'human'}">    
+                  <div class="details">
+                    <p [innerHTML]="sanitizeText(item.text)"></p>
+                </div>
+              </div>
+              <div class="chat-typing" *ngIf="istyping">
+                  <p>печатает...</p>
+              </div>
+        </div>
+          <div class="input_block">
+              <div class="chat-container">
+                  <textarea 
+                      rows="2" 
+                      [(ngModel)]="input_text" 
+                      placeholder="Что-то узнать"
+                      (keyup.enter)="generate()"
+                      [disabled]="istyping">
+                  </textarea>
+                  <div class="textarea-container">
+                      <button (click)="generate()" [disabled]="istyping">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                              stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                              <path d="M5 12l14 0"></path>
+                              <path d="M13 18l6 -6"></path>
+                              <path d="M13 6l6 6"></path>
+                          </svg>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <app-loading *ngIf="loadingHandler.isLoading"></app-loading>
+</div>

@@ -1,0 +1,31 @@
+<form [formGroup]="myForm">
+    <div class="block_dialog">
+        <h1 mat-dialog-title>{{inputdata.title}}</h1>
+        <div mat-dialog-content>
+            <div class="content_dialog">
+                <div class="block_column">
+                    <label>username</label>
+                    <input type="text" formControlName="username">
+                    <label style="margin-top: 8px;">email</label>
+                    <input type="email" formControlName="email">
+                </div>
+                <div class="block_row">
+                    <div class="content_category">
+                        <label for="category">role: {{role_customer}}</label>
+                        <div style="margin-bottom: 4px;">
+                            <select id="category" name="category" formControlName="role">
+                                <option value="user">user</option>
+                                <option value="admin">admin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <mat-checkbox formControlName="active">Is Active</mat-checkbox>
+                </div>
+            </div>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-raised-button (click)="pickFunction()" class="btn_save">Save</button>
+            <button mat-raised-button (click)="closepopup()" class="btn_close">Close</button>
+        </div>
+    </div>
+</form>

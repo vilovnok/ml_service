@@ -1,0 +1,21 @@
+<div class="block">
+  <div class="content">
+    <div class="section_logo">
+      <div class="section_logo_content">
+        <h2>E/I</h2>
+      </div>
+    </div>
+    <div class="section_verify">
+      <form [formGroup]="VerifyForm">
+        <div class="block_group">
+          <div class="form_group">
+            <label for="Code">code</label>
+            <input formControlName="code" type="code" name="code">
+            <button (click)="send_code()" type="submit" class="login-btn">Send code</button>
+            <p class="forgot-password"><a routerLink="/reg">Would you like to come back?</a></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

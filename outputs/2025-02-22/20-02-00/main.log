@@ -1,0 +1,46 @@
+[2025-02-22 20:02:00,558][aiogram.dispatcher][INFO] - Start polling
+[2025-02-22 20:02:00,923][aiogram.dispatcher][INFO] - Run polling for bot @YanixTradebot id=7420915283 - 'YanixTradeBot'
+[2025-02-22 20:02:02,641][aiogram.event][INFO] - Update id=667609179 is not handled. Duration 0 ms by bot id=7420915283
+[2025-02-22 20:02:02,642][aiogram.event][ERROR] - Cause exception while process update id=667609179 by bot id=7420915283
+AttributeError: __aenter__
+Traceback (most recent call last):
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 174, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/.venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/ynx_bot/routers/welcome_router.py", line 32, in cmd_start
+    result = await connect2db(uow:= UOWDep, user_id=user_id)
+  File "/Users/richardgurtsiev/Desktop/projects/save/delete_2024/ml_service/yanix-trade/ynx_bot/routers/welcome_router.py", line 14, in connect2db
+    async with uow:
+AttributeError: __aenter__
+[2025-02-22 20:02:04,654][aiogram.dispatcher][WARNING] - Received SIGINT signal
+[2025-02-22 20:02:04,656][aiogram.dispatcher][INFO] - Polling stopped for bot @YanixTradebot id=7420915283 - 'YanixTradeBot'
+[2025-02-22 20:02:04,656][aiogram.dispatcher][INFO] - Polling stopped

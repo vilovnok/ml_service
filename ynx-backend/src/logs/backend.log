@@ -1,0 +1,108 @@
+2025-05-05 18:26:47,063 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:26:47,064 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:26:48,192 - INFO - 127.0.0.1 - OPTIONS /auth/register - Status: 400 - Time: 0.0003s
+2025-05-05 18:27:12,751 - INFO - 127.0.0.1 - OPTIONS /auth/register - Status: 200 - Time: 0.0007s
+2025-05-05 18:27:13,521 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.7666s
+2025-05-05 18:27:13,553 - INFO - 127.0.0.1 - OPTIONS /verify/get-code/1 - Status: 200 - Time: 0.0004s
+2025-05-05 18:28:21,471 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:28:21,472 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:28:30,220 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.3099s
+2025-05-05 18:29:32,814 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:29:32,814 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:30:16,166 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:30:16,167 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:30:21,091 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.4478s
+2025-05-05 18:31:58,687 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:31:58,687 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:32:11,593 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.6239s
+2025-05-05 18:33:12,551 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:33:12,551 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:33:51,591 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:33:51,592 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:34:02,485 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.6023s
+2025-05-05 18:34:49,089 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:34:49,089 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:35:07,142 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:35:07,142 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:35:11,620 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.6094s
+2025-05-05 18:35:47,110 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:35:47,110 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:35:52,436 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.6127s
+2025-05-05 18:36:27,356 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:36:27,357 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:36:30,720 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.6062s
+2025-05-05 18:37:30,120 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:37:30,120 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:37:36,864 - INFO - 127.0.0.1 - OPTIONS /auth/register - Status: 200 - Time: 0.0005s
+2025-05-05 18:37:37,466 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.6005s
+2025-05-05 18:37:37,483 - INFO - 127.0.0.1 - OPTIONS /verify/get-code/1 - Status: 200 - Time: 0.0002s
+2025-05-05 18:39:15,086 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.2858s
+2025-05-05 18:39:15,105 - INFO - 127.0.0.1 - OPTIONS /verify/get-code/2 - Status: 200 - Time: 0.0003s
+2025-05-05 18:39:41,570 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:39:41,570 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:40:09,574 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:40:09,574 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:40:16,600 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:40:16,600 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:40:27,376 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:40:27,376 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:40:39,213 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:40:39,213 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:40:50,644 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.3424s
+2025-05-05 18:40:50,710 - INFO - 127.0.0.1 - OPTIONS /verify/get-code/3 - Status: 200 - Time: 0.0002s
+2025-05-05 18:42:34,189 - INFO - 127.0.0.1 - POST /auth/register - Status: 400 - Time: 0.2743s
+2025-05-05 18:43:51,738 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.364s
+2025-05-05 18:44:41,383 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.2885s
+2025-05-05 18:45:36,861 - INFO - 🚀 FastAPI запущен
+2025-05-05 18:45:36,861 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 18:45:52,186 - INFO - 127.0.0.1 - POST /auth/register - Status: 201 - Time: 0.6201s
+2025-05-05 18:45:52,331 - INFO - 127.0.0.1 - GET /verify/get-code/2 - Status: 200 - Time: 0.0767s
+2025-05-05 18:46:56,170 - INFO - 127.0.0.1 - OPTIONS /verify/send-code - Status: 200 - Time: 0.0012s
+2025-05-05 18:46:56,222 - INFO - 127.0.0.1 - POST /verify/send-code - Status: 200 - Time: 0.0483s
+2025-05-05 18:51:11,466 - INFO - 127.0.0.1 - OPTIONS /auth/login - Status: 200 - Time: 0.0014s
+2025-05-05 18:51:11,775 - INFO - 127.0.0.1 - POST /auth/login - Status: 200 - Time: 0.3047s
+2025-05-05 18:51:11,940 - INFO - 127.0.0.1 - OPTIONS /verify/verify-user/2 - Status: 200 - Time: 0.0011s
+2025-05-05 18:51:11,941 - INFO - 127.0.0.1 - OPTIONS /generate/get_balance/ - Status: 200 - Time: 0.0014s
+2025-05-05 18:51:11,941 - INFO - 127.0.0.1 - OPTIONS /generate/get_chat - Status: 200 - Time: 0.0019s
+2025-05-05 18:51:11,955 - INFO - 127.0.0.1 - GET /generate/get_balance/ - Status: 307 - Time: 0.0062s
+2025-05-05 18:51:11,957 - INFO - 127.0.0.1 - OPTIONS /generate/get_balance - Status: 200 - Time: 0.0001s
+2025-05-05 18:51:11,973 - INFO - 127.0.0.1 - GET /verify/verify-user/2 - Status: 200 - Time: 0.0282s
+2025-05-05 18:51:12,055 - INFO - 127.0.0.1 - GET /generate/get_balance - Status: 200 - Time: 0.0959s
+2025-05-05 18:51:12,061 - INFO - 127.0.0.1 - GET /generate/get_chat - Status: 200 - Time: 0.1121s
+2025-05-05 18:51:21,997 - INFO - 127.0.0.1 - OPTIONS /generate/generate_text - Status: 200 - Time: 0.0006s
+2025-05-05 18:51:22,039 - INFO - 127.0.0.1 - POST /generate/generate_text - Status: 200 - Time: 0.04s
+2025-05-05 18:51:24,049 - INFO - 127.0.0.1 - OPTIONS /generate/get_message/d078f0b9-e7a9-4961-8b56-74415b57abb4 - Status: 200 - Time: 0.0002s
+2025-05-05 18:51:24,066 - INFO - 127.0.0.1 - GET /generate/get_message/d078f0b9-e7a9-4961-8b56-74415b57abb4 - Status: 200 - Time: 0.0155s
+2025-05-05 18:51:26,063 - INFO - 127.0.0.1 - GET /generate/get_message/d078f0b9-e7a9-4961-8b56-74415b57abb4 - Status: 200 - Time: 0.012s
+2025-05-05 18:52:10,014 - INFO - 127.0.0.1 - POST /generate/generate_text - Status: 200 - Time: 0.0392s
+2025-05-05 18:52:12,025 - INFO - 127.0.0.1 - OPTIONS /generate/get_message/4f0ecf26-74c2-47a4-b370-16df33b94983 - Status: 200 - Time: 0.0005s
+2025-05-05 18:52:12,036 - INFO - 127.0.0.1 - GET /generate/get_message/4f0ecf26-74c2-47a4-b370-16df33b94983 - Status: 200 - Time: 0.0086s
+2025-05-05 18:52:14,046 - INFO - 127.0.0.1 - GET /generate/get_message/4f0ecf26-74c2-47a4-b370-16df33b94983 - Status: 200 - Time: 0.0151s
+2025-05-05 18:53:19,505 - INFO - 127.0.0.1 - GET /generate/get_balance/ - Status: 307 - Time: 0.0027s
+2025-05-05 18:53:19,554 - INFO - 127.0.0.1 - GET /verify/verify-user/2 - Status: 200 - Time: 0.0516s
+2025-05-05 18:53:19,559 - INFO - 127.0.0.1 - GET /generate/get_balance - Status: 200 - Time: 0.0147s
+2025-05-05 18:53:22,364 - INFO - 127.0.0.1 - GET /generate/get_chat - Status: 200 - Time: 0.0168s
+2025-05-05 18:54:19,865 - INFO - 127.0.0.1 - OPTIONS /generate/top-up-balance - Status: 200 - Time: 0.0014s
+2025-05-05 18:54:19,918 - INFO - 127.0.0.1 - POST /generate/top-up-balance - Status: 200 - Time: 0.0485s
+2025-05-05 18:54:21,927 - INFO - 127.0.0.1 - OPTIONS /generate/check-balance/fa4b1d04-842c-498c-870c-834cc9b05f13 - Status: 200 - Time: 0.0004s
+2025-05-05 18:54:21,946 - INFO - 127.0.0.1 - GET /generate/check-balance/fa4b1d04-842c-498c-870c-834cc9b05f13 - Status: 200 - Time: 0.0165s
+2025-05-05 18:56:26,521 - INFO - 127.0.0.1 - GET /generate/get_chat - Status: 200 - Time: 0.023s
+2025-05-05 18:56:30,426 - INFO - 127.0.0.1 - POST /auth/login - Status: 200 - Time: 0.2909s
+2025-05-05 18:56:30,449 - INFO - 127.0.0.1 - GET /verify/verify-user/2 - Status: 200 - Time: 0.0158s
+2025-05-05 18:56:30,505 - INFO - 127.0.0.1 - GET /generate/get_balance/ - Status: 307 - Time: 0.0019s
+2025-05-05 18:56:30,522 - INFO - 127.0.0.1 - GET /generate/get_balance - Status: 200 - Time: 0.0145s
+2025-05-05 18:56:30,523 - INFO - 127.0.0.1 - GET /verify/verify-user/2 - Status: 200 - Time: 0.0201s
+2025-05-05 18:56:30,558 - INFO - 127.0.0.1 - GET /generate/get_chat - Status: 200 - Time: 0.0544s
+2025-05-05 18:56:31,692 - INFO - 127.0.0.1 - OPTIONS /user/profiles - Status: 200 - Time: 0.0004s
+2025-05-05 18:56:31,707 - INFO - 127.0.0.1 - GET /user/profiles - Status: 200 - Time: 0.0129s
+2025-05-05 18:57:54,039 - INFO - 127.0.0.1 - GET /generate/get_chat - Status: 200 - Time: 0.0479s
+2025-05-05 19:13:36,149 - INFO - 🚀 FastAPI запущен
+2025-05-05 19:13:36,149 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 19:13:42,818 - INFO - 🚀 FastAPI запущен
+2025-05-05 19:13:42,818 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 19:14:03,410 - INFO - 🚀 FastAPI запущен
+2025-05-05 19:14:03,410 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 19:14:49,787 - INFO - 🚀 FastAPI запущен
+2025-05-05 19:14:49,787 - INFO - 🔌 Redis кэш инициализирован
+2025-05-05 19:15:00,667 - INFO - 🚀 FastAPI запущен
+2025-05-05 19:15:00,668 - INFO - 🔌 Redis кэш инициализирован

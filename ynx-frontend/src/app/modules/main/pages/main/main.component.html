@@ -1,0 +1,31 @@
+<mat-toolbar class="mat-elevation">
+  <div class="toolbar-btn-block">
+    <button mat-icon-button class="btn" (click)="!isHandset ?  collapsed.set(!collapsed()) : OpenPopupMenu()" [ngStyle]="{ 'color':'#ff5533','background-color':'transparent'}">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="btns">
+      <div class="btn_helps">
+        <button>
+          <img src="/assets/chat.png" alt="help">
+        </button>
+        <button>
+          <img src="/assets/account.png" alt="account">
+        </button>
+      </div>
+      <div class="section_logo">
+        <div class="section_logo_content">
+          <h2>YNX</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+<router-outlet *ngIf="isHandset"></router-outlet>
+<mat-sidenav-container *ngIf="!isHandset">
+  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()" [ngStyle]="{'background-color': '#1e2027'}">
+    <app-custom-sidenav [collapsed]="collapsed()"></app-custom-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content class="mat-content" [style.margin-left]="sidenavWidth()">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

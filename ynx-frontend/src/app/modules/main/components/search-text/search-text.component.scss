@@ -1,0 +1,44 @@
+// $white: #fff;
+$white: #E5E5E5;
+$black: #1e2027;
+$gray: #262a2f;
+$orange: #ff5533;
+$font-family: "Roboto Mono", monospace;
+
+.search_block {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.search_container {
+    width: 40vh;
+    border-radius: 16px;
+    padding: 4px 4px 4px 20px;
+    background: $white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.search_container input {
+    flex: 1;
+    height: 36px;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 18px;
+    color: $black;
+    width: 36vh;
+}
+
+.btn_clear {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.btn_clear span {
+    padding: 4px 2px;
+    font-size: 14px;
+    color: $gray;
+    font-weight: bold;
+}

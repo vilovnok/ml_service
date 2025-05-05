@@ -1,0 +1,81 @@
+
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ynx-frontend-primary: mat.define-palette(mat.$indigo-palette);
+$ynx-frontend-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$ynx-frontend-warn: mat.define-palette(mat.$red-palette);
+
+
+$ynx-frontend-red: (
+    main: red,
+    lighter: #f0b3b3,
+    darker: #b90000,
+    200: #cc0000,
+
+    contrast: (main: #e20d0d,
+        lighter: #000000,
+        darker: #ffffff,
+    ),
+);
+
+$ynx-frontend-theme: mat.define-light-theme((
+  color: (
+    primary: $ynx-frontend-primary,
+    accent: $ynx-frontend-accent,
+    warn: $ynx-frontend-warn,
+    redee: $ynx-frontend-red
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+//переходы страницы
+// @keyframes slide-left {
+//   to {
+//     transform: translateX(-33px);
+//   }
+// }
+// @keyframes slide-right {
+//   to {
+//     transform: translateX(33px);
+//   }
+// }
+// @keyframes fade-out {
+//   to {
+//     opacity: 0;
+//   }
+// }
+
+
+
+// ::view-transition-old(root) {
+//   animation: 1s fade-out, 1s slide-left
+// }
+// ::view-transition-new(root) {
+//   animation: 2s fade-out, 1s slide-right
+// }
+
+@include mat.all-component-themes($ynx-frontend-theme);
+
+
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    --primary-color: blue;
+}
+
+
+// @import url("assets/style_scss/log_reg.scss");  замена для log_reg
