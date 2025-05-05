@@ -39,8 +39,8 @@ export class RegisterComponent implements OnInit {
       this.service.handle_post_requests(this.registerForm.value,'auth/register').subscribe({
         next: (res) => {
           this.registerForm.reset();
-          this.service.saveDataToLS('user_id',res.user_id);
-          this.toast.success({detail:"SUCCESS",summary:res.message}); 
+          this.service.saveDataToLS('user_id', res.user_id);
+          this.toast.success({detail:"SUCCESS", summary:res.message}); 
           this.router.navigate(['verify']);
         },
         error: (err) => {

@@ -25,7 +25,7 @@ class AuthService:
             username_checker = await uow.user.get_one(username=data.username, n_tab=0)
             is_verified_email_checker = await uow.user.get_one(email=data.email, is_verified=True, n_tab=0)            
             is_verified_username_checker = await uow.user.get_one(username=data.username, is_verified=True, n_tab=0)
-
+            
             if email_checker:
                 if is_verified_email_checker:            
                     await uow.rollback()
@@ -43,7 +43,6 @@ class AuthService:
                         'user_id': email_checker.id, 
                         'message':"Введите code из вашей почты: ******"}
                 return res
-
             if username_checker:
                 if is_verified_username_checker:
                     await uow.rollback()
@@ -64,13 +63,13 @@ class AuthService:
             
             try:
                 user_id = await uow.user.add_one(user_model.model_dump(), n_tab=0)
-            except Exception as err:
-                print(err)
-            if not user_id:                
+                await uow.commit()
+            except Exception:
                 await uow.rollback()
                 raise HTTPException(status_code=400)
-            await uow.commit()
-            
+
+            user_id = 1 if user_id is None else user_id.id
+
             res = {'status': 'success',
                    'user_id': user_id, 
                    'message':"Введите code из вашей почты: ******"}
@@ -78,7 +77,7 @@ class AuthService:
 
     async def login(self, uow: IUnitOfWork, data: AuthLogin):
         async with uow:
-            user: Users = await uow.user.get_one(email= data.email, full_model=True,n_tab=0)
+            user: Users = await uow.user.get_one(email= data.email, full_model=True,n_tab=0)            
             if not user:            
                 await uow.rollback()
                 raise HTTPException(status_code=400, detail='Invalid password or email')
@@ -92,6 +91,7 @@ class AuthService:
                                                role=user.role,
                                                verify=user.is_verified,
                                                active=user.is_active,
+                                               balance=user.balance,
                                                ava_img=user.avatar_image, 
                                                secret=SECRET, 
                                                expires_delta=timedelta(hours=3))
@@ -102,6 +102,7 @@ class AuthService:
                                                 role=user.role, 
                                                 verify=user.is_verified,
                                                 active=user.is_active,
+                                                balance=user.balance,
                                                 ava_img=user.avatar_image, 
                                                 secret=REFRESH_SECRET, 
                                                 expires_delta=timedelta(days=3))
@@ -109,9 +110,7 @@ class AuthService:
         
     async def reset_password(self, uow: IUnitOfWork, data: AuthForgetPass):
         async with uow:
-            
             user = await uow.user.get_one(email=data.email, n_tab=0)
-            
             if not user:            
                 await uow.rollback()
                 raise HTTPException(status_code=400, detail='User with email is not exists.')
@@ -119,7 +118,6 @@ class AuthService:
             await uow.user.update(where=[Users.email==data.email], n_tab=0,
                                             values={'hashed_password' : bcrypt_context.hash(data.password)})
             await uow.commit()
-
             res = {'status': 'success', 'message':"Your password has been reset."}
             return res
 
@@ -138,6 +136,7 @@ class AuthService:
                                                    role=user.role,
                                                    verify=user.is_verified,
                                                    active=user.is_active,
+                                                   balance=user.balance,
                                                    ava_img=user.avatar_image, 
                                                    secret=SECRET, 
                                                    expires_delta=timedelta(hours=3))
@@ -148,6 +147,7 @@ class AuthService:
                                                     role=user.role, 
                                                     verify=user.is_verified,
                                                     active=user.is_active,
+                                                    balance=user.balance,
                                                     ava_img=user.avatar_image, 
                                                     secret=REFRESH_SECRET, 
                                                     expires_delta=timedelta(days=3))

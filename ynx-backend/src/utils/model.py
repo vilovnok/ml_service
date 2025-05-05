@@ -1,10 +1,8 @@
 from transformers import AutoTokenizer, T5ForConditionalGeneration, AutoModelForSequenceClassification, pipeline
-from huggingface_hub import login
 
 from config import MODEL_ID_CHAT, MODEL_ID_CLS
 
 
-login(token='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')
 
 chat_model = T5ForConditionalGeneration.from_pretrained(MODEL_ID_CHAT)
 chat_tokenizer = AutoTokenizer.from_pretrained(MODEL_ID_CHAT)    

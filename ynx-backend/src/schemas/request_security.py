@@ -1,4 +1,3 @@
-from typing import List, Optional
 from datetime import datetime
 from pydantic import BaseModel, Field
 
@@ -14,9 +13,6 @@ class RequestSecurityRead(TunedModel):
     message_gen: str = Field(default='')
     started_at: datetime
     finished_at: datetime = Field(default=None) 
-
-# class RequestSecurityRead(BaseModel):
-#     posts: List[RequestSecurityRead]
 
 class RequestSecurityCreate(BaseModel):
     user_id: int

@@ -1,4 +1,3 @@
-import time
 import uuid
 
 from fastapi import HTTPException
@@ -29,11 +28,8 @@ class GenerateService:
                     message=message,
                     started_at=started_at,
                 )
-                balance = await uow.account.get_one(user_id=user.id, n_tab=0)
-                if balance.balance <= 0:
-                    raise HTTPException(status_code=403, detail=f"На вашем балансе {balance.balance} YNX. Для взаимодействия с моделью требуется не менее 10 YNX 🧑‍🔧")
-                if balance.balance <= 9:
-                    raise HTTPException(status_code=403, detail=f"На вашем балансе {balance.balance} YNX. Для взаимодействия с моделью требуется не менее 10 YNX 🧑‍🔧")
+                if user.balance <= 9:
+                    raise HTTPException(status_code=403, detail=f"На вашем балансе {user.balance} YNX. Для взаимодействия с моделью требуется не менее 10 YNX 🧑‍🔧")
 
                 await uow.request.add_one(request_model.model_dump(), n_tab=0)
                 await uow.commit()
@@ -41,17 +37,18 @@ class GenerateService:
 
                 return {"token": token}
 
-    async def get_chat(self, uow: IUnitOfWork, data: UsersRead):
+    async def get_chat(self, uow: IUnitOfWork, user: UsersRead):
         async with uow:
-            user_id = data.id
             try:
-                messages = await uow.request.get_all(user_id=user_id, n_tab=0)
-                messages = RequestAllRead(**data.model_dump(), posts=messages)
+                messages = await uow.request.get_all(user_id=user.id, n_tab=0)
+                messages = RequestAllRead(**user.model_dump(), posts=messages)
                 if messages:
                     return {                                        
                         "messages": messages
-                    }            
+                    }   
+                print('4'*100)         
             except Exception as err:
+                print(err)
                 raise HTTPException(status_code=400, detail=f"{err}")      
             
 
@@ -68,6 +65,10 @@ class GenerateService:
             else:
                 return {'status': status, 'message_gen': message.message_gen}
             
+    async def get_balance(self, uow: IUnitOfWork, user: UsersRead):
+        async with uow:            
+            return {'balance': user.balance}
+
 
     async def topUpBalance(self, uow: IUnitOfWork, user: UsersRead, data: RequestEntityV1):
             async with uow:
@@ -91,15 +92,12 @@ class GenerateService:
 
     async def check_balance(self, uow: IUnitOfWork, user: UsersRead, token: str):
         async with uow:
-            print(token)
             message = await uow.request_security.get_one(token=token, n_tab=0)
-            account = await uow.account.get_one(user_id=user.id, n_tab=0)
-            print(message)
             if message is None:
                 raise HTTPException(status_code=404, detail="Message not found")
             
             status = message.status 
-            balance = account.balance
+            balance = user.balance
             message_gen = message.message_gen
 
             if status == 'completed':

@@ -1,6 +1,6 @@
 from datetime import datetime
 from db.db import Base
-from sqlalchemy import (Column, String, 
+from sqlalchemy import (Column, String, Integer,
                         TIMESTAMP, Boolean,text)
 from sqlalchemy.orm import Mapped, mapped_column
 from schemas.user import *
@@ -16,6 +16,7 @@ class Users(Base):
     email = Column(String, nullable=False, primary_key=True, index=True)
     hashed_password = Column(String, nullable=False)
     role = Column(String, nullable=False, default='user')
+    balance = Column(Integer, nullable=False, default=100)
     avatar_image = Column(String, nullable=True)
     is_active = Column(Boolean, nullable=False, default=True)
     is_verified = Column(Boolean, nullable=False, default=False)
@@ -29,6 +30,7 @@ class Users(Base):
             username=self.username,
             email=self.email,
             role=self.role,
+            balance=self.balance,
             avatar_image=self.avatar_image,
             is_active=self.is_active,
             is_verified=self.is_verified,

@@ -7,41 +7,50 @@ services:
   #   build:
   #     context: ./ynx-frontend
   #   ports:
-  #     - 4200:80
-  #   expose:
-  #     - 80  
+  #     - "${FR_PORT}:80"
   #   networks:
   #     - ynx-net
 
   # ynx-backend:
-  #   container_name: ynx-backend
+  #   container_name: ynx-backend  
   #   restart: always  
   #   build: 
-  #     context: ./ynx-backend
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ./ynx_backend/config.yaml:/ynx_backend/config.yaml
-
-
-
-  # ynx-bot:
-  #   container_name: ynx-bot
-  #   restart: unless-stopped
-  #   build:
-  #     context: ./ynx_bot
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ./ynx_bot/config.yaml:/ynx_bot/config.yaml
+  #     context: ./ynx-backend 
+  #   ports:
+  #     - "8000:8000"
+  #   command: ["sh","/ynx-backend/app_run.sh","app"]
+  #   depends_on:
+  #     ynx-redis: 
+  #       condition: service_started      
+  #     ynx-postgres:          
+  #       condition: service_healthy
   #   environment:
-  #     - TZ=UTC
+  #     - DATABASE_URL=postgresql+asyncpg://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME} 
+  #     - CELERY_BROKER_URL=redis://ynx-redis:6379/0
   #   networks:
   #     - ynx-net
+
+  # ynx-celery:
+  #   container_name: ynx-celery    
+  #   restart: always  
+  #   build:
+  #     context: ./ynx-backend
+  #   command: ["/ynx-backend/celery_run.sh","celery_run"]    
+  #   depends_on:
+  #     - ynx-redis
+  #     - ynx-backend
+  #   environment:
+  #     - CELERY_BROKER_URL=redis://ynx-redis:6379/0
+  #   networks:
+  #     - ynx-net    
 
   ynx-redis:
     container_name: ynx-redis
     image: redis:6.2-alpine
     ports:
-      - "6380:6379"  
+      - "6379:6379"  
+    networks:
+      - ynx-net
 
   ynx-postgres:
     container_name: ynx-postgres
@@ -63,19 +72,6 @@ services:
     networks:
       - ynx-net
 
-  ynx-rabbitmq:
-    container_name: ynx-rabbitmq
-    image: rabbitmq:3.7-management
-    hostname: "rabbit"
-    ports:
-      - "4369:4369"
-      - "5672:5672"
-      - "25672:25672"
-      - "15672:15672"
-    environment:
-      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
-      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
-
   ynx-pgadmin:
     container_name: ynx-pgadmin
     image: dpage/pgadmin4
@@ -93,7 +89,3 @@ services:
 networks:
   ynx-net:
     driver: bridge 
-
-# volumes:
-#   postgres_storage_ynx:
-#     driver: local

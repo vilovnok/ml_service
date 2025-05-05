@@ -15,7 +15,6 @@ ALGORITHM = os.environ.get('ALGORITHM')
 
 UPLOADS_DIR = os.environ.get('UPLOADS_DIR')
 
-
 RABBITMQ_DEFAULT_USER=os.environ.get('RABBITMQ_DEFAULT_USER')
 RABBITMQ_DEFAULT_PASS=os.environ.get('RABBITMQ_DEFAULT_PASS')
 RABBITMQ_DEFAULT_HOST=os.environ.get('RABBITMQ_DEFAULT_HOST')
@@ -30,8 +29,10 @@ EMAIL_PASS = os.environ.get('EMAIL_PASS')
 SMTP_HOST = os.environ.get('SMTP_HOST')
 SMTP_PORT = os.environ.get('SMTP_PORT')
 
+HF_TOKEN = os.environ.get('HF_TOKEN')
 MODEL_ID_CHAT = os.environ.get('MODEL_ID_CHAT')
 MODEL_ID_CLS = os.environ.get('MODEL_ID_CLS')
 
+FR_PORT = os.environ.get('FR_PORT')
 
 

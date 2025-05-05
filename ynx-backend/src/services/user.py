@@ -45,19 +45,18 @@ class UsersService:
     async def update_profile(self, uow: IUnitOfWork, data: SaveEditUser):
         async with uow:
             try:                
-                user = await uow.user.get_one(id=data.user_id,n_tab=0)
+                user = await uow.user.get_one(id=data.user_id, n_tab=0)
                 current_time=datetime.now().replace(microsecond=0)
                 time_with_timezone=current_time.replace(tzinfo=timezone(timedelta(hours=3)))
 
                 if not user:
                     await uow.rollback()
                     raise HTTPException(status_code=404, detail='User not found')                
-                await uow.user.update(where=[Users.id==data.user_id],n_tab=0, values={'username': data.username, 
+                await uow.user.update(where=[Users.id==data.user_id], n_tab=0, values={'username': data.username, 
                                                                         'email': data.email, 
                                                                         'role': data.role,
                                                                         'is_active':data.active,
                                                                         'updated_at':time_with_timezone})
-                
                 await uow.commit()
                 return {
                     'status': 'success',
@@ -71,7 +70,9 @@ class UsersService:
 
 
     async def add_profile(self, uow: IUnitOfWork, data: SaveEditUser):
-        password='customer'
+        first_name='admin'
+        last_name='admin'
+        password='admin'
         async with uow:
                 email_checker = await uow.user.get_one(email=data.email,n_tab=0)
                 username_checker = await uow.user.get_one(username=data.username,n_tab=0)                
@@ -84,8 +85,8 @@ class UsersService:
                     raise HTTPException(status_code=400, detail='A user with this username already exists')                
             
                 user_model = AddUser(
-                    first_name=password,
-                    last_name=password,
+                    first_name=first_name,
+                    last_name=last_name,
                     username=data.username,
                     email=data.email,
                     role=data.role,
@@ -109,8 +110,8 @@ class UsersService:
                 await uow.rollback()
                 raise HTTPException(status_code=400, detail='User was previously removed')
             await uow.verify.delete(user_id=user.id,n_tab=0)
-            await uow.verify.delete(user_id=user.id,n_tab=1) # pipe
-            await uow.verify.delete(user_id=user.id,n_tab=2) # post
+            await uow.request.delete(user_id=user.id, n_tab=0) 
+            await uow.request_security.delete(user_id=user.id, n_tab=0) 
             await uow.user.delete(id=user.id,n_tab=0)
             await uow.commit()
             return {

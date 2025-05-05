@@ -20,7 +20,9 @@ export class CustomSidenavComponent implements OnInit {
     this.auth.updatemenu.subscribe(res => {
       this.menuDisplay();});
     this.menuDisplay();
+    this.get_balance();
   }
+
 
   displayDashboard = false;
 
@@ -29,6 +31,7 @@ export class CustomSidenavComponent implements OnInit {
   currentFirstName: any;
   currentLastName: any;
   currentUser_id: any;
+  currentBalance: any;
 
   sideNavCollapsed = signal(false);
   @Input() set collapsed(val: boolean) {
@@ -66,6 +69,14 @@ export class CustomSidenavComponent implements OnInit {
         this.menuItems.set(currentMenuItems);
       }
     });
+  }
+
+
+  get_balance(){
+    this.auth.handle_get_requests('','generate/get_balance').subscribe(result => {
+      this.currentBalance = result['balance'];
+      console.log(this.currentBalance);
+    })
   }
   logOut(): void {
     this.auth.logOut();

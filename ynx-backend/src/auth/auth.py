@@ -22,7 +22,8 @@ def create_access_token(username: str,
                         role: str,
                         verify: str,
                         active: str,
-                        ava_img: str, 
+                        ava_img: str,
+                        balance: int, 
                         secret: str, 
                         expires_delta: timedelta):
     
@@ -33,6 +34,7 @@ def create_access_token(username: str,
               'role': role, 
               'verify': verify,
               'active': active,
+              'balance': balance,
               'ava_img':ava_img}
     expires = datetime.utcnow() + expires_delta
     encode.update({'exp': expires})
@@ -70,7 +72,6 @@ async def get_verified_user(token: Annotated[str, Depends(oauth2_bearer)], sessi
         raise HTTPException(status_code=403, detail='Forbidden')
     except:
         raise HTTPException(status_code=401, detail='Unauthorized')
-    
 
 async def get_verify_admin(token: Annotated[str, Depends(oauth2_bearer)], session: AsyncSession = Depends(get_async_session)):
     try:

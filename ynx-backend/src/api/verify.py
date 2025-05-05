@@ -3,6 +3,7 @@ from schemas.verify import *
 from fastapi import APIRouter
 from services.verify import VerifyService
 
+
 router = APIRouter(
     prefix='/verify',
     tags=['Verify']
@@ -13,7 +14,6 @@ async def get_verify_code(
     user_id: int,
     uow: UOWDep
 ):
-    print('*'*10)
     res = await VerifyService().get_verify_code(uow, user_id)
     return res
 
@@ -22,7 +22,6 @@ async def send_code(
     data: VerifyCreateV2,
     uow: UOWDep
 ):
-    print()
     res = await VerifyService().send_verify_code(uow, data)
     return res
 

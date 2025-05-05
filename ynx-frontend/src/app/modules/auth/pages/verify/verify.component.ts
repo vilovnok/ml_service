@@ -34,8 +34,7 @@ export class VerifyComponent {
   }
 
   get_code():void{
-    let user_id = Number(this.service.getDataFromLS('user_id'));
-    console.log("user_id: ", user_id);
+    let user_id = this.service.getDataFromLS('user_id');
     console.log("user_id: ", user_id);
     this.service.handle_get_requests(user_id,'verify/get-code').subscribe({
       next: (res) => {
@@ -50,7 +49,6 @@ export class VerifyComponent {
     if (this.VerifyForm.valid) {
       this.service.handle_post_requests(this.VerifyForm.value,'verify/send-code').subscribe({
         next: (res) => {
-          console.log(res);
           this.VerifyForm.reset();
           this.toast.success({detail:"SUCCESS", summary: res.message, duration: 5000});
           this.router.navigate(['login']);
@@ -65,5 +63,4 @@ export class VerifyComponent {
       this.toast.error({detail:"ERROR", summary:"Зполните всю форму", duration: 5000});
     }
   }
-
 }

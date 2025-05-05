@@ -17,6 +17,7 @@ class UsersRead(TunedModel):
     username: str 
     email: EmailStr
     role: str
+    balance: int = 100
     avatar_image: str | None
     is_active: bool
     is_verified: bool

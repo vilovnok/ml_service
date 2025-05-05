@@ -2,7 +2,6 @@ import smtplib
 from config import *
 from utils.mail import *
 from celery import Celery
-from models.generate import *
 from utils.model import chat_fun, topUp_fun
 from utils.sql import conn_to_db
 
@@ -12,7 +11,6 @@ from zoneinfo import ZoneInfo
 
 celery = Celery(
     __name__, 
-    # broker=f"amqp://{RABBITMQ_DEFAULT_USER}:{RABBITMQ_DEFAULT_PASS}@{RABBITMQ_DEFAULT_HOST}:{RABBITMQ_DEFAULT_PORT}",
     broker=f"redis://{REDIS_HOST}:{REDIS_PORT}",
     backend=f"redis://{REDIS_HOST}:{REDIS_PORT}",
 )
@@ -28,9 +26,9 @@ def send_email_code(username:str, email:str, code:int):
 @celery.task
 def generate_text(user_id: int, message: str, token: str):
     query_message_gen = f"""
-                UPDATE account 
+                UPDATE users 
                 SET balance = balance - 10
-                WHERE user_id = %s;
+                WHERE id = %s;
             """
     query_update_completed = f"""
                 UPDATE request 
@@ -43,9 +41,11 @@ def generate_text(user_id: int, message: str, token: str):
                 SET status = 'failed', message_gen = %s, finished_at = %s
                 WHERE token = %s;
             """
+    
+    conn = conn_to_db()
+    cursor = conn.cursor() 
     try:
-        conn = conn_to_db()
-        cursor = conn.cursor() 
+        
         finished_at = datetime.now(ZoneInfo("Europe/Moscow"))
         message_gen = chat_fun(message=message)
         cursor.execute(query_message_gen, (user_id,))
@@ -63,9 +63,9 @@ def generate_text(user_id: int, message: str, token: str):
 @celery.task
 def topUpBalance(user_id: int, message: str, token: str):
     query_top_up_balance = f"""
-                UPDATE account 
+                UPDATE users 
                 SET balance = balance + %s
-                WHERE user_id = %s;
+                WHERE id = %s;
             """
     query_update_completed = f"""
                 UPDATE request_security

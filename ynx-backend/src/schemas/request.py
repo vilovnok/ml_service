@@ -12,8 +12,8 @@ class RequestRead(TunedModel):
     token: str
     message: str
     message_gen: str = Field(default='')
-    started_at: datetime
-    finished_at: datetime = Field(default=None) 
+    started_at: Optional[datetime] = None
+    finished_at: Optional[datetime] = None
 
 class RequestAllRead(BaseModel):
     posts: List[RequestRead]
